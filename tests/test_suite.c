@@ -19,6 +19,24 @@ START_TEST(it_allocates_a_single_byte_and_stores_0xFF)
 }
 END_TEST
 
+START_TEST(it_makes_multiple_allocations)
+{
+    s_allocator_t *stack;
+    char *a;
+    char *b;
+
+    stack = s_alloc_init(2);
+    a = s_alloc(stack, 1, 0);
+    b = s_alloc(stack, 1, 0);
+
+    memset(a, 0xFF, 1);
+    memset(b, 0xEF, 1);
+
+    ck_assert_int_eq(*((unsigned char *)a), 0xFF);
+    ck_assert_int_eq(*((unsigned char *)b), 0xEF);
+}
+END_TEST
+
 Suite *make_memory_allocator_unit_test_suite()
 {
     Suite *s;
@@ -28,6 +46,7 @@ Suite *make_memory_allocator_unit_test_suite()
     tc = tcase_create("Core");
 
     tcase_add_test(tc, it_allocates_a_single_byte_and_stores_0xFF);
+    tcase_add_test(tc, it_makes_multiple_allocations);
 
     suite_add_tcase(s, tc);
 
