@@ -18,3 +18,8 @@ void *s_alloc(s_allocator_t *allocator, size_t bytes, size_t alignment)
     allocator->top += bytes;
     return mem;
 }
+
+void s_free(s_allocator_t *allocator, void *location)
+{
+    allocator->top = location;
+}

@@ -9,4 +9,6 @@ void *s_alloc_init(size_t bytes);
 
 void *s_alloc(s_allocator_t *allocator, size_t bytes, size_t alignment);
 
+void s_free(s_allocator_t *allocation, void *location);
+
 #endif // STACK_ALLOCATOR_H
