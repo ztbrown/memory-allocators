@@ -2,6 +2,8 @@
 #define STACK_ALLOCATOR_H
 
 #include <stdlib.h>
+#include <assert.h>
+#include <stdint.h>
 
 typedef struct s_allocator_s s_allocator_t;
 
